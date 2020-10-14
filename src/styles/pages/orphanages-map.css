@@ -42,16 +42,14 @@
     width: 64px;
     height: 64px;
     background: #15c3d6;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index:10;
-    transition: background-color 0.2s;
-}
-
-#page-map .leaflet-container{
-    z-index:5;
+    transition: background-color 0.3s;
+    transition-duration: 800ms;
+    transition-property: all;
 }
 
 #page-map .create-orphanage:hover{
@@ -59,10 +57,14 @@
     box-shadow: 1px 1px 5px 0.5px #262626;
     width: 69px;
     height: 69px;
-    transition: all 0.2s ease-in-out;
+    transform: rotate(360deg);
+    
 }
 
 #page-map .create-orphanage:active{
     box-shadow: none;
 }
 
+#page-map .leaflet-container{
+    z-index:5;
+}

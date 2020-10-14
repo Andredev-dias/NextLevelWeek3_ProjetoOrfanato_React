@@ -23,7 +23,7 @@ function OrphanagesMap(){
                     <span>Paraná</span>
                 </footer>
             </aside>
-                <Map center={[-25.3822592,-49.2247336]} zoom={10} style={{width:'100%',height:'100%'}}>
+                <Map center={[-25.3822592,-49.2247336]} zoom={18} style={{width:'100%',height:'100%'}}>
                   { /* <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" /> */}
                   <TileLayer url={`https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}/>
                 </Map>

@@ -15,17 +15,17 @@ function Landing(){
           <img src={logoImg} alt="Happy Logo"/>
   
           <main>
-            <h1>Leve felicidade para o mundo!</h1>
-            <p>Visite orfanatos e mude o dia de muitas crianças.</p>
+            <h1 className="fade">Leve felicidade para o mundo!</h1>
+            <p className="fade">Visite orfanatos e mude o dia de muitas crianças.</p>
           </main>
   
           <div className="location">
-            <strong>Curitiba</strong>
-            <span>Paraná</span>
+            <strong className="fade">Curitiba</strong>
+            <span className="fade">Paraná</span>
           </div>
   
           <Link to="/app" className="enter-app">
-            <FiArrowRight size={26} color="rgba(0,0,0,0.6)"/>
+            <FiArrowRight size={26} color="rgba(0,0,0,0.6)" />
           </Link>
   
         </div>

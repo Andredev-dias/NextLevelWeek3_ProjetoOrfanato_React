@@ -18,6 +18,7 @@
     flex-direction: column;
     justify-content: space-between;
     background: url('../../images/landing.svg') no-repeat 80% center;/*aqui o eixo x = 1º e o y = 2º*/
+    animation: fadeleft 3s;
 }
 #page-landing .content-wrapper main{
     max-width: 350px;
@@ -56,11 +57,14 @@
     width: 80px;
     height: 80px;
     background: #96feff;
-    border-radius: 30px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s;
+    transition-duration: 800ms;
+    transition-property: all;
+    animation: fadeup 2s;
 }
 
 .content-wrapper .enter-app:hover{
@@ -68,10 +72,50 @@
     box-shadow: 1px 1px 5px 0.5px #262626;
     width: 85px;
     height: 85px;
-    transition: all 0.2s ease-in-out;
+    transform: rotate(360deg);
+    
 }
 .content-wrapper .enter-app:active{
     box-shadow: none;
 }
 
+.fade{
+    animation: fade 3s;
+}
 
+@keyframes fade{
+    from{
+        transform: translate3d(0,150px,0);
+        opacity: 0;
+    }
+    to{
+        transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+
+
+@keyframes fadeleft{
+    from{
+        transform: translate3d(50px,0,0);
+        
+    }
+    to{
+        transform: translate3d(0,0,0);
+        
+    }
+}
+
+@keyframes fadeup{
+    0%{
+        transform: translate3d(100px,-100px,0);
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.5;
+    }
+    100%{
+        transform: translate3d(0,0,0);
+        opacity: none;
+    }
+}

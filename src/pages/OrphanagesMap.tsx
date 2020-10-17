@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiPlus, FiArrowRight } from 'react-icons/fi';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
@@ -8,6 +8,7 @@ import 'leaflet/dist/leaflet.css';
 
 import '../styles/pages/orphanages-map.css';
 import mapMarkerImg from '../images/map-marker.svg';
+import api from '../services/api';
 
 const mapIcon = Leaflet.icon({
     iconUrl: mapMarkerImg,
@@ -16,7 +17,22 @@ const mapIcon = Leaflet.icon({
     popupAnchor:[170, 2],
 })
 
+interface Orphanage {
+    id: number;
+    latitude: number;
+    longitude: number;
+    name: string;
+  }
+
 function OrphanagesMap(){
+    const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
+
+    useEffect(() => {
+        api.get('orphanages').then(response => {
+          setOrphanages(response.data);
+        });
+      }, []);
+      
     return(
         <div id="page-map">
             <aside>
@@ -35,14 +51,18 @@ function OrphanagesMap(){
                   { /* <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" /> */}
                     <TileLayer url={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}/>
 
-                    <Marker position={[-25.3822592,-49.2247336]} icon={mapIcon}>
+                {orphanages.map(orphanage => {
+                    return(
+                    <Marker key={orphanage.id} position={[orphanage.latitude, orphanage.longitude]} icon={mapIcon}>
                         <Popup closeButton={false} minWidth={240} maxWidth={240} className="map-popup">
-                            Orfanato 1
-                            <Link to="orphanages/1">
+                            {orphanage.name}
+                            <Link to={`/orphanages/${orphanage.id}`}>
                            <FiArrowRight size={20} color="#fff" />
                             </Link>
                         </Popup>
                     </Marker>
+                    )
+                })}
                </Map>
         
             <Link to="/orphanages/create" className="create-orphanage">
